@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fitness.dao.NewscontentMapper" >
+  <resultMap id="BaseResultMap" type="com.fitness.entity.Newscontent" >
+    <id column="newsc_id" property="newscId" jdbcType="VARCHAR" />
+    <result column="newsc_content" property="newscContent" jdbcType="VARCHAR" />
+    <result column="newsc_shuming" property="newscShuming" jdbcType="VARCHAR" />
+    <result column="newsc_phone" property="newscPhone" jdbcType="VARCHAR" />
+    <result column="newsc_hotline" property="newscHotline" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    newsc_id, newsc_content, newsc_shuming, newsc_phone, newsc_hotline
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from newscontent
+    where newsc_id = #{newscId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from newscontent
+    where newsc_id = #{newscId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fitness.entity.Newscontent" >
+    insert into newscontent (newsc_id, newsc_content, newsc_shuming, 
+      newsc_phone, newsc_hotline)
+    values (#{newscId,jdbcType=VARCHAR}, #{newscContent,jdbcType=VARCHAR}, #{newscShuming,jdbcType=VARCHAR}, 
+      #{newscPhone,jdbcType=VARCHAR}, #{newscHotline,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fitness.entity.Newscontent" >
+    insert into newscontent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newscId != null" >
+        newsc_id,
+      </if>
+      <if test="newscContent != null" >
+        newsc_content,
+      </if>
+      <if test="newscShuming != null" >
+        newsc_shuming,
+      </if>
+      <if test="newscPhone != null" >
+        newsc_phone,
+      </if>
+      <if test="newscHotline != null" >
+        newsc_hotline,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newscId != null" >
+        #{newscId,jdbcType=VARCHAR},
+      </if>
+      <if test="newscContent != null" >
+        #{newscContent,jdbcType=VARCHAR},
+      </if>
+      <if test="newscShuming != null" >
+        #{newscShuming,jdbcType=VARCHAR},
+      </if>
+      <if test="newscPhone != null" >
+        #{newscPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="newscHotline != null" >
+        #{newscHotline,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fitness.entity.Newscontent" >
+    update newscontent
+    <set >
+      <if test="newscContent != null" >
+        newsc_content = #{newscContent,jdbcType=VARCHAR},
+      </if>
+      <if test="newscShuming != null" >
+        newsc_shuming = #{newscShuming,jdbcType=VARCHAR},
+      </if>
+      <if test="newscPhone != null" >
+        newsc_phone = #{newscPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="newscHotline != null" >
+        newsc_hotline = #{newscHotline,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where newsc_id = #{newscId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fitness.entity.Newscontent" >
+    update newscontent
+    set newsc_content = #{newscContent,jdbcType=VARCHAR},
+      newsc_shuming = #{newscShuming,jdbcType=VARCHAR},
+      newsc_phone = #{newscPhone,jdbcType=VARCHAR},
+      newsc_hotline = #{newscHotline,jdbcType=VARCHAR}
+    where newsc_id = #{newscId,jdbcType=VARCHAR}
+  </update>
+</mapper>

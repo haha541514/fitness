@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fitness.dao.NewsMapper" >
+  <resultMap id="BaseResultMap" type="com.fitness.entity.News" >
+    <id column="news_id" property="newsId" jdbcType="VARCHAR" />
+    <result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+    <result column="news_createtime" property="newsCreatetime" jdbcType="TIMESTAMP" />
+    <result column="news_opcode" property="newsOpcode" jdbcType="VARCHAR" />
+    <result column="news_type" property="newsType" jdbcType="VARCHAR" />
+    <result column="news_del" property="newsDel" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    news_id, news_title, news_createtime, news_opcode, news_type, news_del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from news
+    where news_id = #{newsId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from news
+    where news_id = #{newsId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fitness.entity.News" >
+    insert into news (news_id, news_title, news_createtime, 
+      news_opcode, news_type, news_del
+      )
+    values (#{newsId,jdbcType=VARCHAR}, #{newsTitle,jdbcType=VARCHAR}, #{newsCreatetime,jdbcType=TIMESTAMP}, 
+      #{newsOpcode,jdbcType=VARCHAR}, #{newsType,jdbcType=VARCHAR}, #{newsDel,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fitness.entity.News" >
+    insert into news
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        news_id,
+      </if>
+      <if test="newsTitle != null" >
+        news_title,
+      </if>
+      <if test="newsCreatetime != null" >
+        news_createtime,
+      </if>
+      <if test="newsOpcode != null" >
+        news_opcode,
+      </if>
+      <if test="newsType != null" >
+        news_type,
+      </if>
+      <if test="newsDel != null" >
+        news_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="newsId != null" >
+        #{newsId,jdbcType=VARCHAR},
+      </if>
+      <if test="newsTitle != null" >
+        #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsCreatetime != null" >
+        #{newsCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newsOpcode != null" >
+        #{newsOpcode,jdbcType=VARCHAR},
+      </if>
+      <if test="newsType != null" >
+        #{newsType,jdbcType=VARCHAR},
+      </if>
+      <if test="newsDel != null" >
+        #{newsDel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fitness.entity.News" >
+    update news
+    <set >
+      <if test="newsTitle != null" >
+        news_title = #{newsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="newsCreatetime != null" >
+        news_createtime = #{newsCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="newsOpcode != null" >
+        news_opcode = #{newsOpcode,jdbcType=VARCHAR},
+      </if>
+      <if test="newsType != null" >
+        news_type = #{newsType,jdbcType=VARCHAR},
+      </if>
+      <if test="newsDel != null" >
+        news_del = #{newsDel,jdbcType=INTEGER},
+      </if>
+    </set>
+    where news_id = #{newsId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fitness.entity.News" >
+    update news
+    set news_title = #{newsTitle,jdbcType=VARCHAR},
+      news_createtime = #{newsCreatetime,jdbcType=TIMESTAMP},
+      news_opcode = #{newsOpcode,jdbcType=VARCHAR},
+      news_type = #{newsType,jdbcType=VARCHAR},
+      news_del = #{newsDel,jdbcType=INTEGER}
+    where news_id = #{newsId,jdbcType=VARCHAR}
+  </update>
+  
+ 
+  
+   <select id="getAllNews" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from news
+  </select>
+  
+  <!--property 是实体类中的字段，column 是下面查询时用的别名 ,错误原因，这里javaType是list,而实体类里面是对象-->
+  <!-- 1.collection是list,如果关联单个对象用association 
+  		2. JavaType关联的是有路径的实体类
+   -->
+  <!--  <collection property="ntype" javaType="list" ofType="com.fitness.entity.Newstype" >
+			<id property="newstId" column="newstId" />
+			<result property="newstType"  column="newstType" />
+		</collection>-->
+<!-- 1.select 设置 useCache="false" , 这可以避免使用缓存 
+		2.mybatis显示在控制台显示sql,配置log4j
+	技巧，mybatis的sql都是sql，不是hibernate的sql都是可以在数据库查询的	
+	-->
+  	<resultMap type="com.fitness.entity.News" id="newsResultMap4" extends="BaseResultMap">
+		 
+		 <association property="ntype" javaType="com.fitness.entity.Newstype" >
+            <id property="newstId" column="newstId" />
+            <result property="newstType" column="newstType" />        
+        </association>        
+
+	 	<association property="operator" javaType="com.fitness.entity.Operator" >
+            <id property="opCode" column="opCode" />
+            <result property="opName" column="opName" />        
+        </association>  
+	</resultMap>
+	
+    <select id="getAllNews2" resultMap="newsResultMap4" >
+    select 
+    	news_id, news_title, news_createtime, news_opcode, news_type, news_del,
+    newstype.newst_id newstId,
+    newstype.newst_type newstType,   
+    t_op_operator.op_code opCode,
+    t_op_operator.op_name opName
+    from news 
+    join newstype on news.news_type = newstype.newst_id  
+    join t_op_operator on news.news_opcode = t_op_operator.op_code
+  </select>
+  
+  
+  
+  
+  
+</mapper>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fitness.dao.BBSMapper" >
+  <resultMap id="BaseResultMap" type="com.fitness.entity.BBS" >
+    <id column="bbs_id" property="bbsId" jdbcType="INTEGER" />
+    <result column="bbs_title" property="bbsTitle" jdbcType="VARCHAR" />
+    <result column="bbs_content" property="bbsContent" jdbcType="VARCHAR" />
+    <result column="bbs_sender" property="bbsSender" jdbcType="INTEGER" />
+    <result column="bbs_sendTime" property="bbsSendtime" jdbcType="TIMESTAMP" />
+    <result column="bbs_face" property="bbsFace" jdbcType="VARCHAR" />
+    <result column="bbs_opTime" property="bbsOptime" jdbcType="TIMESTAMP" />
+    <result column="bbs_isTop" property="bbsIstop" jdbcType="VARCHAR" />
+    <result column="bbs_toTopTime" property="bbsTotoptime" jdbcType="TIMESTAMP" />
+    <result column="bbs_isGood" property="bbsIsgood" jdbcType="VARCHAR" />
+    <result column="bbs_toGoodTime" property="bbsTogoodtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    bbs_id, bbs_title, bbs_content, bbs_sender, bbs_sendTime, bbs_face, bbs_opTime, bbs_isTop, 
+    bbs_toTopTime, bbs_isGood, bbs_toGoodTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_bbs
+    where bbs_id = #{bbsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_bbs
+    where bbs_id = #{bbsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fitness.entity.BBS" >
+    insert into tb_bbs (bbs_id, bbs_title, bbs_content, 
+      bbs_sender, bbs_sendTime, bbs_face, 
+      bbs_opTime, bbs_isTop, bbs_toTopTime, 
+      bbs_isGood, bbs_toGoodTime)
+    values (#{bbsId,jdbcType=INTEGER}, #{bbsTitle,jdbcType=VARCHAR}, #{bbsContent,jdbcType=VARCHAR}, 
+      #{bbsSender,jdbcType=INTEGER}, #{bbsSendtime,jdbcType=TIMESTAMP}, #{bbsFace,jdbcType=VARCHAR}, 
+      #{bbsOptime,jdbcType=TIMESTAMP}, #{bbsIstop,jdbcType=VARCHAR}, #{bbsTotoptime,jdbcType=TIMESTAMP}, 
+      #{bbsIsgood,jdbcType=VARCHAR}, #{bbsTogoodtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fitness.entity.BBS" >
+    insert into tb_bbs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="bbsId != null" >
+        bbs_id,
+      </if>
+      <if test="bbsTitle != null" >
+        bbs_title,
+      </if>
+      <if test="bbsContent != null" >
+        bbs_content,
+      </if>
+      <if test="bbsSender != null" >
+        bbs_sender,
+      </if>
+      <if test="bbsSendtime != null" >
+        bbs_sendTime,
+      </if>
+      <if test="bbsFace != null" >
+        bbs_face,
+      </if>
+      <if test="bbsOptime != null" >
+        bbs_opTime,
+      </if>
+      <if test="bbsIstop != null" >
+        bbs_isTop,
+      </if>
+      <if test="bbsTotoptime != null" >
+        bbs_toTopTime,
+      </if>
+      <if test="bbsIsgood != null" >
+        bbs_isGood,
+      </if>
+      <if test="bbsTogoodtime != null" >
+        bbs_toGoodTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="bbsId != null" >
+        #{bbsId,jdbcType=INTEGER},
+      </if>
+      <if test="bbsTitle != null" >
+        #{bbsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="bbsContent != null" >
+        #{bbsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="bbsSender != null" >
+        #{bbsSender,jdbcType=INTEGER},
+      </if>
+      <if test="bbsSendtime != null" >
+        #{bbsSendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbsFace != null" >
+        #{bbsFace,jdbcType=VARCHAR},
+      </if>
+      <if test="bbsOptime != null" >
+        #{bbsOptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbsIstop != null" >
+        #{bbsIstop,jdbcType=VARCHAR},
+      </if>
+      <if test="bbsTotoptime != null" >
+        #{bbsTotoptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbsIsgood != null" >
+        #{bbsIsgood,jdbcType=VARCHAR},
+      </if>
+      <if test="bbsTogoodtime != null" >
+        #{bbsTogoodtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fitness.entity.BBS" >
+    update tb_bbs
+    <set >
+      <if test="bbsTitle != null" >
+        bbs_title = #{bbsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="bbsContent != null" >
+        bbs_content = #{bbsContent,jdbcType=VARCHAR},
+      </if>
+      <if test="bbsSender != null" >
+        bbs_sender = #{bbsSender,jdbcType=INTEGER},
+      </if>
+      <if test="bbsSendtime != null" >
+        bbs_sendTime = #{bbsSendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbsFace != null" >
+        bbs_face = #{bbsFace,jdbcType=VARCHAR},
+      </if>
+      <if test="bbsOptime != null" >
+        bbs_opTime = #{bbsOptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbsIstop != null" >
+        bbs_isTop = #{bbsIstop,jdbcType=VARCHAR},
+      </if>
+      <if test="bbsTotoptime != null" >
+        bbs_toTopTime = #{bbsTotoptime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="bbsIsgood != null" >
+        bbs_isGood = #{bbsIsgood,jdbcType=VARCHAR},
+      </if>
+      <if test="bbsTogoodtime != null" >
+        bbs_toGoodTime = #{bbsTogoodtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where bbs_id = #{bbsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fitness.entity.BBS" >
+    update tb_bbs
+    set bbs_title = #{bbsTitle,jdbcType=VARCHAR},
+      bbs_content = #{bbsContent,jdbcType=VARCHAR},
+      bbs_sender = #{bbsSender,jdbcType=INTEGER},
+      bbs_sendTime = #{bbsSendtime,jdbcType=TIMESTAMP},
+      bbs_face = #{bbsFace,jdbcType=VARCHAR},
+      bbs_opTime = #{bbsOptime,jdbcType=TIMESTAMP},
+      bbs_isTop = #{bbsIstop,jdbcType=VARCHAR},
+      bbs_toTopTime = #{bbsTotoptime,jdbcType=TIMESTAMP},
+      bbs_isGood = #{bbsIsgood,jdbcType=VARCHAR},
+      bbs_toGoodTime = #{bbsTogoodtime,jdbcType=TIMESTAMP}
+    where bbs_id = #{bbsId,jdbcType=INTEGER}
+  </update>
+
+  
+    <select id="getAllBBS" resultMap="BaseResultMap"  >
+    select 
+   	 <include refid="Base_Column_List" />
+    from tb_bbs
+  
+  </select>
+  
+  
+  
+</mapper>

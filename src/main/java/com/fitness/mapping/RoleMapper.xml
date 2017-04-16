@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fitness.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.fitness.entity.Role" >
+    <id column="role_code" property="roleCode" jdbcType="INTEGER" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="role_createtime" property="roleCreatetime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    role_code, role_name, role_createtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_op_role
+    where role_code = #{roleCode,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_op_role
+    where role_code = #{roleCode,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fitness.entity.Role" >
+    insert into t_op_role (role_code, role_name, role_createtime
+      )
+    values (#{roleCode,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{roleCreatetime,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fitness.entity.Role" >
+    insert into t_op_role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleCode != null" >
+        role_code,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="roleCreatetime != null" >
+        role_createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleCode != null" >
+        #{roleCode,jdbcType=INTEGER},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCreatetime != null" >
+        #{roleCreatetime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fitness.entity.Role" >
+    update t_op_role
+    <set >
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleCreatetime != null" >
+        role_createtime = #{roleCreatetime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where role_code = #{roleCode,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fitness.entity.Role" >
+    update t_op_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_createtime = #{roleCreatetime,jdbcType=VARCHAR}
+    where role_code = #{roleCode,jdbcType=INTEGER}
+  </update>
+</mapper>

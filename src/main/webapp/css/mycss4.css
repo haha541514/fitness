@@ -1,0 +1,136 @@
+@charset "utf-8";
+/* CSS Document */
+.wrap{
+	width:1700px;height:2000px;
+	margin:0 auto;
+	padding:0px;
+	}
+.head{
+	width:1700px;height:71px;
+	background:#22252e;
+	float:left;
+	}
+.nav{
+	width:1200px;height:71px;
+	margin-left:250px;
+	float:left;
+	}
+.logo{
+	width:67px;height:71px;
+	background:url(../img/index/logo.jpg);
+	float:left;
+	}
+.nav1{
+	width:720px;height:45px;
+	float:right;
+	margin-right:40px;
+	margin-top:26px;
+	}
+.nav1 ul {
+	margin:0px;
+	padding:0px;
+	}
+.nav1 ul li {
+	width: 102px;
+	color: #FFF;
+	font-size: 20px;
+	font-family: "微软雅黑";
+	line-height: 45px;
+	list-style: none;
+	float: left;
+	text-align: center;
+	font-weight: 500;
+}
+.nav1 ul li a{
+	width:102px;height:45px;
+	color: #FFF;
+	text-decoration:none;
+}
+.nav1 ul li a:visited{
+	width:102px;height:45px;
+	border-bottom:3px #00ffff solid;
+	text-decoration:none;
+}
+.nav1 ul li a:hover {
+	width:102px;height:45px;
+	color:#00ffff;
+	font-size:20px;
+	font-family:"微软雅黑";
+}
+.login{
+	width:65px;height:20px;
+	font-size:10px;
+	font-family:"微软雅黑";
+	color:#00ffff;
+	text-align:center;
+	float:left;
+	}
+.login a {color:#00ffff;text-decoration:none;}
+
+.banner{
+	width:1700px;height:409px;
+	background:url(../img/teacher/banner_02.jpg);
+	float:left;
+	}
+.cotent{
+	width:1200px;height:1265px;
+	margin-left:250px;
+	margin-top:55px;
+	float:left;
+	}
+.title{
+	width:1200px;height:63px;
+	/*border-bottom:1px solid #666;*/
+	float:left;
+	}
+.line{
+	width:1190px;height:1px;
+	border-bottom:#666 1px solid;
+	margin-left:20px;
+	float:left;
+	}
+.list1{
+	width:990px;height:391px;
+	margin-top:105px;
+	margin-left:150px;
+	float:left;
+	}
+.box{
+	width:236px;height:391px;
+    margin-right:94px;
+	float:left;
+}
+.img1{width:236px;height:296px;float:left;}
+.text{
+	width:221px;height:95px;
+	line-height:20px;
+	padding-left:10px;
+	}
+.text h1{
+	color:#66f4f4;
+	font-size:30px;
+	font-family:"微软雅黑";
+	}
+.text h2{
+	font-size: 18px;
+	font-family: "微软雅黑";
+	font-weight: normal;
+	}
+.foot{
+	width:1700px;height:195px;
+	background:#22252e;
+	float:left;
+	}
+.copyriht{
+	width: 442px;
+	height: 65px;
+	margin-top: 67px;
+	margin-left: 629px;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	text-align:center;
+	line-height:30px;
+	color: #FFF;
+	}
+.floatclaer{
+	clear:both;}
