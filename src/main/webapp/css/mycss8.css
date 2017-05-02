@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* CSS Document */
+.wrap{
+	width:1700px;height:auto;
+	margin:0 auto;
+	}
+.back{
+	width:1700px;height:580px;
+	background:url(../img/login/2.jpg);
+	margin-top:auto;
+	
+	}
+.logo{
+	width:100px;height:auto;
+	margin-left:70px;margin-top:50px;
+	float:left;
+	}
+.content{
+	width:588px;
+	height:580px;
+	margin-left:586px;
+	float:left;
+	}
+.text{
+	width:527px;
+	height:77px;
+	line-height:77px;
+	font-family:"微软雅黑";
+	color:#666;
+	margin-left:30px;
+	margin-top:50px;
+	border-radius:10px;
+	font-size:18px;
+	}
+.button{
+	width:527px;
+	height:77px;
+	line-height:77px;
+	font-family:"微软雅黑";
+	background:#00ffff;
+	color:#FFF;
+	margin-left:30px;
+	margin-top:80px;
+	border-radius:10px;
+	font-size:18px;
+	}

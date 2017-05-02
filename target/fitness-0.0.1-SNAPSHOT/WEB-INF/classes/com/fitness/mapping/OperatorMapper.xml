@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fitness.dao.OperatorMapper" >
+  <resultMap id="BaseResultMap" type="com.fitness.entity.Operator" >
+    <id column="op_code" property="opCode" jdbcType="INTEGER" />
+    <result column="op_name" property="opName" jdbcType="VARCHAR" />
+    <result column="op_pass" property="opPass" jdbcType="VARCHAR" />
+    <result column="op_qqnum" property="opQqnum" jdbcType="VARCHAR" />
+    <result column="op_role" property="opRole" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    op_code, op_name, op_pass, op_qqnum, op_role
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_op_operator
+    where op_code = #{opCode,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_op_operator
+    where op_code = #{opCode,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fitness.entity.Operator" >
+    insert into t_op_operator (op_code, op_name, op_pass, 
+      op_qqnum, op_role)
+    values (#{opCode,jdbcType=INTEGER}, #{opName,jdbcType=VARCHAR}, #{opPass,jdbcType=VARCHAR}, 
+      #{opQqnum,jdbcType=VARCHAR}, #{opRole,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.fitness.entity.Operator" >
+    insert into t_op_operator
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="opCode != null" >
+        op_code,
+      </if>
+      <if test="opName != null" >
+        op_name,
+      </if>
+      <if test="opPass != null" >
+        op_pass,
+      </if>
+      <if test="opQqnum != null" >
+        op_qqnum,
+      </if>
+      <if test="opRole != null" >
+        op_role,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="opCode != null" >
+        #{opCode,jdbcType=INTEGER},
+      </if>
+      <if test="opName != null" >
+        #{opName,jdbcType=VARCHAR},
+      </if>
+      <if test="opPass != null" >
+        #{opPass,jdbcType=VARCHAR},
+      </if>
+      <if test="opQqnum != null" >
+        #{opQqnum,jdbcType=VARCHAR},
+      </if>
+      <if test="opRole != null" >
+        #{opRole,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fitness.entity.Operator" >
+    update t_op_operator
+    <set >
+      <if test="opName != null" >
+        op_name = #{opName,jdbcType=VARCHAR},
+      </if>
+      <if test="opPass != null" >
+        op_pass = #{opPass,jdbcType=VARCHAR},
+      </if>
+      <if test="opQqnum != null" >
+        op_qqnum = #{opQqnum,jdbcType=VARCHAR},
+      </if>
+      <if test="opRole != null" >
+        op_role = #{opRole,jdbcType=INTEGER},
+      </if>
+    </set>
+    where op_code = #{opCode,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fitness.entity.Operator" >
+    update t_op_operator
+    set op_name = #{opName,jdbcType=VARCHAR},
+      op_pass = #{opPass,jdbcType=VARCHAR},
+      op_qqnum = #{opQqnum,jdbcType=VARCHAR},
+      op_role = #{opRole,jdbcType=INTEGER}
+    where op_code = #{opCode,jdbcType=INTEGER}
+  </update>
+  
+  
+   <select id="getAll" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from t_op_operator
+  </select>
+  
+  
+  
+</mapper>

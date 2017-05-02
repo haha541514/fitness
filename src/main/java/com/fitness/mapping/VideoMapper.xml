@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fitness.dao.VideoMapper" >
+  <resultMap id="BaseResultMap" type="com.fitness.entity.Video" >
+    <id column="video_id" property="videoId" jdbcType="VARCHAR" />
+    <result column="video_title" property="videoTitle" jdbcType="VARCHAR" />
+    <result column="video_createtime" property="videoCreatetime" jdbcType="TIMESTAMP" />
+    <result column="video_opcode" property="videoOpcode" jdbcType="VARCHAR" />
+    <result column="video_del" property="videoDel" jdbcType="VARCHAR" />
+    <result column="video_url" property="videoUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    video_id, video_title, video_createtime, video_opcode, video_del, video_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from video
+    where video_id = #{videoId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from video
+    where video_id = #{videoId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.fitness.entity.Video" >
+    insert into video (video_id, video_title, video_createtime, 
+      video_opcode, video_del, video_url
+      )
+    values (#{videoId,jdbcType=VARCHAR}, #{videoTitle,jdbcType=VARCHAR}, #{videoCreatetime,jdbcType=TIMESTAMP}, 
+      #{videoOpcode,jdbcType=VARCHAR}, #{videoDel,jdbcType=VARCHAR}, #{videoUrl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fitness.entity.Video" >
+    insert into video
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="videoId != null" >
+        video_id,
+      </if>
+      <if test="videoTitle != null" >
+        video_title,
+      </if>
+      <if test="videoCreatetime != null" >
+        video_createtime,
+      </if>
+      <if test="videoOpcode != null" >
+        video_opcode,
+      </if>
+      <if test="videoDel != null" >
+        video_del,
+      </if>
+      <if test="videoUrl != null" >
+        video_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="videoId != null" >
+        #{videoId,jdbcType=VARCHAR},
+      </if>
+      <if test="videoTitle != null" >
+        #{videoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="videoCreatetime != null" >
+        #{videoCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="videoOpcode != null" >
+        #{videoOpcode,jdbcType=VARCHAR},
+      </if>
+      <if test="videoDel != null" >
+        #{videoDel,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null" >
+        #{videoUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fitness.entity.Video" >
+    update video
+    <set >
+      <if test="videoTitle != null" >
+        video_title = #{videoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="videoCreatetime != null" >
+        video_createtime = #{videoCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="videoOpcode != null" >
+        video_opcode = #{videoOpcode,jdbcType=VARCHAR},
+      </if>
+      <if test="videoDel != null" >
+        video_del = #{videoDel,jdbcType=VARCHAR},
+      </if>
+      <if test="videoUrl != null" >
+        video_url = #{videoUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where video_id = #{videoId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fitness.entity.Video" >
+    update video
+    set video_title = #{videoTitle,jdbcType=VARCHAR},
+      video_createtime = #{videoCreatetime,jdbcType=TIMESTAMP},
+      video_opcode = #{videoOpcode,jdbcType=VARCHAR},
+      video_del = #{videoDel,jdbcType=VARCHAR},
+      video_url = #{videoUrl,jdbcType=VARCHAR}
+    where video_id = #{videoId,jdbcType=VARCHAR}
+  </update>
+  
+ 
+  
+   <select id="getAllVideo" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from video
+  </select>
+  
+  
+  
+</mapper>
